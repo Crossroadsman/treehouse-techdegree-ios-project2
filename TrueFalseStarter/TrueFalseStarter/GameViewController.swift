@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  GameViewController.swift
 //  TrueFalseStarter
 //
 //  Created by Pasan Premaratne on 3/9/16.
@@ -10,7 +10,7 @@ import UIKit
 import GameKit
 import AudioToolbox
 
-class ViewController: UIViewController {
+class GameViewController: UIViewController {
     
     let questionsPerRound = 4
     var questionsAsked = 0

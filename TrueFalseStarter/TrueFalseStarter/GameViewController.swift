@@ -12,6 +12,8 @@ import AudioToolbox
 
 class GameViewController: UIViewController {
     
+    // old code to remove:
+    
     let questionsPerRound = 4
     var questionsAsked = 0
     var correctQuestions = 0
@@ -25,6 +27,10 @@ class GameViewController: UIViewController {
         ["Question": "Camels are cannibalistic", "Answer": "False"],
         ["Question": "All ducks are birds", "Answer": "True"]
     ]
+    //end old code to remove
+    
+    //MARK: - Properties
+    //------------------
     
     @IBOutlet weak var questionField: UILabel!
     @IBOutlet weak var trueButton: UIButton!

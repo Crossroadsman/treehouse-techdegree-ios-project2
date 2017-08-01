@@ -7,9 +7,7 @@
 //
 
 import Foundation
-import GameplayKit
-
-import GameplayKit
+import GameplayKit // for RNG
 
 struct Question {
     //MARK: - Properties
@@ -49,7 +47,7 @@ struct Question {
     }
 }
 
-let questions = [
+let mainQuestionBank = [
     Question(question: "This was the only US President to serve more than two consecutive terms.", correctAnswer: "Franklin D. Roosevelt", incorrectAnswers: ["George Washington", "Woodrow Wilson", "Andrew Jackson"]),
     Question(question: "Which of the following countries has the most residents?", correctAnswer: "Nigeria", incorrectAnswers: ["Russia", "Iran", "Vietnam"]),
     Question(question: "In what year was the United Nations founded?", correctAnswer: "1945", incorrectAnswers: ["1918", "1919", "1954"]),

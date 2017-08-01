@@ -7,13 +7,11 @@
 //
 
 import UIKit
-import GameKit
-import AudioToolbox
 
 class GameViewController: UIViewController {
     
     // old code to remove:
-    
+    /*
     let questionsPerRound = 4
     var questionsAsked = 0
     var correctQuestions = 0
@@ -27,37 +25,99 @@ class GameViewController: UIViewController {
         ["Question": "Camels are cannibalistic", "Answer": "False"],
         ["Question": "All ducks are birds", "Answer": "True"]
     ]
+     */
     //end old code to remove
     
     //MARK: - Properties
     //------------------
     
+    //old code to remove:
+    /*
     @IBOutlet weak var questionField: UILabel!
     @IBOutlet weak var trueButton: UIButton!
     @IBOutlet weak var falseButton: UIButton!
     @IBOutlet weak var playAgainButton: UIButton!
-    
+    */
+    //end old code to remove
 
+    @IBOutlet weak var lightningStackView: UIStackView!
+    @IBOutlet weak var timeRemainingLabel: UILabel!
+    
+    @IBOutlet weak var questionLabel: UILabel!
+    
+    @IBOutlet weak var resultLabel: UILabel!
+    
+    @IBOutlet weak var answer1Label: UIButton!
+    
+    @IBOutlet weak var answer2Label: UIButton!
+    
+    @IBOutlet weak var answer3Label: UIButton!
+    
+    @IBOutlet weak var answer4Label: UIButton!
+    
+    
+    let game = Game()
+    let soundController = SoundController()
+    
+    //MARK: - ViewController Methods
+    //-------------------------------
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadGameStartSound()
+        
+        // hide lightning mode
+        lightningStackView.isHidden = true
+        
+        /*
+        for view in lightningStackView.arrangedSubviews {
+            view.isHidden = true
+        }
+         */
+        
         // Start game
-        playGameStartSound()
+        soundController.playSound(named: "start", withFileType: "mp3")
+        game.start()
         displayQuestion()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    
+    //MARK: - IBActions
+    //-----------------
+    
+    @IBAction func answerButtonTapped(_ sender: UIButton) {
+        
+        let answerNumber = sender.tag
+        
     }
+    
+    @IBAction func nextButtonTapped(_ sender: UIButton) {
+        
+        // If !gameOver load reload display with next question
+        
+        // If gameOver segue to gameOver Screen
+        
+    }
+    
+    
+    //MARK: - Other Methods
+    //---------------------
+
     
     func displayQuestion() {
-        indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: trivia.count)
-        let questionDictionary = trivia[indexOfSelectedQuestion]
-        questionField.text = questionDictionary["Question"]
-        playAgainButton.isHidden = true
+        
+        if game.isLightningRound() {
+            lightningStackView.isHidden = false
+        } else {
+            lightningStackView.isHidden = true
+        }
+        
+        questionLabel.text = game.getQuestionText()
+        
+//        playAgainButton.isHidden = true
     }
     
+    //to delete
+    /*
     func displayScore() {
         // Hide the answer buttons
         trueButton.isHidden = true
@@ -69,7 +129,11 @@ class GameViewController: UIViewController {
         questionField.text = "Way to go!\nYou got \(correctQuestions) out of \(questionsPerRound) correct!"
         
     }
+ */
+    //end to delete
     
+    //to delete
+    /*
     @IBAction func checkAnswer(_ sender: UIButton) {
         // Increment the questions asked counter
         questionsAsked += 1
@@ -86,7 +150,11 @@ class GameViewController: UIViewController {
         
         loadNextRoundWithDelay(seconds: 2)
     }
+ */
+    //end to delete
     
+    //to delete
+    /*
     func nextRound() {
         if questionsAsked == questionsPerRound {
             // Game is over
@@ -96,7 +164,11 @@ class GameViewController: UIViewController {
             displayQuestion()
         }
     }
+ */
+    //end to delete
     
+    //to delete
+    /*
     @IBAction func playAgain() {
         // Show the answer buttons
         trueButton.isHidden = false
@@ -106,11 +178,12 @@ class GameViewController: UIViewController {
         correctQuestions = 0
         nextRound()
     }
+ */
     
 
     
     // MARK: Helper Methods
-    
+    /*
     func loadNextRoundWithDelay(seconds: Int) {
         // Converts a delay in seconds to nanoseconds as signed 64 bit integer
         let delay = Int64(NSEC_PER_SEC * UInt64(seconds))
@@ -122,15 +195,7 @@ class GameViewController: UIViewController {
             self.nextRound()
         }
     }
+    */
     
-    func loadGameStartSound() {
-        let pathToSoundFile = Bundle.main.path(forResource: "GameSound", ofType: "wav")
-        let soundURL = URL(fileURLWithPath: pathToSoundFile!)
-        AudioServicesCreateSystemSoundID(soundURL as CFURL, &gameSound)
-    }
-    
-    func playGameStartSound() {
-        AudioServicesPlaySystemSound(gameSound)
-    }
 }
 

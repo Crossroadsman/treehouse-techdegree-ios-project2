@@ -39,7 +39,7 @@ class Game {
     private var score: Int = 0
     
     private var questionIndex = 0
-    
+
     
     //MARK: - Initializers
     //--------------------
@@ -105,9 +105,29 @@ class Game {
     }
     
     public func isCorrect(answer: String) -> Bool {
-        return questionBank[questionIndex].isCorrect(answer: answer)
+        
+        let response: Bool
+        
+        if questionBank[questionIndex].isCorrect(answer: answer) {
+            score += 1
+            response = true
+        } else {
+            response = false
+        }
+        
+        return response
     }
     
-    
+    public func isNextRound() -> Bool {
+        
+        if questionIndex >= questionBank.count - 1 {
+            return false
+        }
+        
+        questionIndex += 1
+        
+        return true
+        
+    }
     
 }

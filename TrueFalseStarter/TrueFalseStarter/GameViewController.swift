@@ -85,7 +85,7 @@ class GameViewController: UIViewController {
     
     @IBAction func answerButtonTapped(_ sender: UIButton) {
         
-        let answerNumber = sender.tag
+        //let answerNumber = sender.tag
         
         let buttons = [answer1Button, answer2Button, answer3Button, answer4Button]
         
@@ -96,8 +96,14 @@ class GameViewController: UIViewController {
         
         if game.isCorrect(answer: sender.titleLabel!.text!) {
             print("correct")
+            resultLabel.text = "That's Correct!"
+            resultLabel.textColor = UIColor(red: 10.0/255, green: 235.0/255, blue: 128.0/255, alpha: 1.0)
+            resultLabel.isHidden = false
+
         } else {
-            print("incorrect")
+            resultLabel.text = "Sorry, that's not it."
+            resultLabel.textColor = UIColor(red: 255.0/255, green: 128.0/255, blue: 0.0/255, alpha: 1.0)
+            resultLabel.isHidden = false
         }
        
     }

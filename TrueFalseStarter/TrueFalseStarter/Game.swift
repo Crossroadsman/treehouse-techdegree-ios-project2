@@ -27,7 +27,10 @@ class Game {
     private var score: Int = 0
     
     private var questionIndex = 0
-    private var roundIndex = 0
+    
+    private var currentRoundIndex = 0
+    
+    private var questionInRound = 0
 
     
     //MARK: - Initializers
@@ -62,7 +65,8 @@ class Game {
             return nil
         case false:
             let randomSource = GKRandomSource()
-            return (randomSource.arrayByShufflingObjects(in: flatBank) as! [Question])
+            let tempArray = randomSource.arrayByShufflingObjects(in: flatBank) as! [Question]
+            return Array(tempArray.prefix(upTo: number))
         case true:
             let randomSource = GKRandomSource()
             var tempBank = [Question]()
@@ -79,7 +83,8 @@ class Game {
     public func start() {
         score = 0
         questionIndex = 0
-        roundIndex = 0
+        currentRoundIndex = 0
+        questionInRound = 0
     }
     
     public func getQuestionText() -> String {
@@ -91,7 +96,7 @@ class Game {
     }
     
     public func isLightningRound() -> Bool {
-        return rounds[roundIndex].type == .lightning
+        return rounds[currentRoundIndex].type == .lightning
     }
     
     public func answerQuestion(answer: String) {
@@ -109,20 +114,31 @@ class Game {
     
     public func isNextRound() -> Bool {
         
+        print("just completed question with index \(questionIndex)")
+        print("(round index: \(currentRoundIndex), question index in round: \(questionInRound))")
+        print("total rounds in game: \(rounds.count)")
+        print("total questions in game: \(questionBank.count)")
+        print("total questions in current round: \(rounds[currentRoundIndex].questions)")
+        
+        
+        
+        
         switch questionIndex {
-        case _ where (questionIndex >= questionBank.count - 1) && (roundIndex == rounds.count - 1):
+        case _ where (questionIndex >= questionBank.count - 1):
             // just completed last question of last round
             return false
             
-        case _ where (questionIndex >= questionBank.count - 1):
+        case _ where (questionInRound >= rounds[currentRoundIndex].questions - 1):
             // just completed last question of round other than last round
             questionIndex += 1
-            roundIndex += 1
+            currentRoundIndex += 1
+            questionInRound = 0
             return true
             
         default:
             //not last question of a round
             questionIndex += 1
+            questionInRound += 1
             return true
         }
         

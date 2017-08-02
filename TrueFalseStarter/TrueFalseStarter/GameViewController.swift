@@ -30,6 +30,11 @@ class GameViewController: UIViewController {
     let game = Game()
     let soundController = SoundController()
     
+    @IBOutlet weak var temp: NSLayoutConstraint!
+    
+    
+    
+    
     //MARK: - ViewController Methods
     //-------------------------------
     
@@ -41,6 +46,7 @@ class GameViewController: UIViewController {
         game.start()
         
         displayQuestion()
+        
     }
     
     
@@ -134,26 +140,29 @@ class GameViewController: UIViewController {
             hideLightning()
         }
         
-
-        let buttons = [answer1Button, answer2Button, answer3Button, answer4Button]
+        let buttons: [UIButton]
         
+        switch answers.count {
+        case 3:
+            buttons = [answer1Button, answer2Button, answer3Button]
+            answer4Button.isHidden = true
+        case 4:
+            answer4Button.isHidden = false
+            buttons = [answer1Button, answer2Button, answer3Button, answer4Button]
+        default:
+            fatalError("Unsupported number of answers")
+        }
+
         // enable buttons
         for (index, button) in buttons.enumerated() {
-
-            if index < answers.count {
-                
-                print("button \(index + 1) is true")
-                button!.isEnabled = true
-                button!.setTitle(answers[index], for: .normal)
-                button!.setTitleColor(Color.lightGrey, for: .normal)
-
-            } else {
-                print("button \(index + 1) is false")
-                button?.isHidden = true
-            }
             
-            
+            button.isEnabled = true
+            button.setTitle(answers[index], for: .normal)
+            button.setTitleColor(Color.lightGrey, for: .normal)
+
         }
+        
+        
 
         
         // set labels

@@ -110,13 +110,13 @@ class Game {
     public func isNextRound() -> Bool {
         
         switch questionIndex {
-        case _ where (questionIndex >= rounds[roundIndex].questions - 1) && (roundIndex == rounds.count - 1):
+        case _ where (questionIndex >= questionBank.count - 1) && (roundIndex == rounds.count - 1):
             // just completed last question of last round
             return false
             
-        case _ where (questionIndex >= rounds[roundIndex].questions - 1):
+        case _ where (questionIndex >= questionBank.count - 1):
             // just completed last question of round other than last round
-            questionIndex = 0
+            questionIndex += 1
             roundIndex += 1
             return true
             

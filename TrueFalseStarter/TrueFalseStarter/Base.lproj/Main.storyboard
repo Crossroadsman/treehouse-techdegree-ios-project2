@@ -270,9 +270,11 @@
                         <outlet property="answer3Button" destination="Tn5-bR-QZx" id="ca7-Pi-f1d"/>
                         <outlet property="answer4Button" destination="fTA-EN-HxG" id="8mO-DH-EOq"/>
                         <outlet property="lightningStackView" destination="UNA-Yq-LsS" id="KUK-XX-g8A"/>
+                        <outlet property="nextQuestionButton" destination="Yhm-aY-Cmy" id="lIL-mh-27B"/>
                         <outlet property="questionLabel" destination="I3V-ih-1Ky" id="qF0-6R-xz8"/>
                         <outlet property="resultLabel" destination="qTh-3m-4CM" id="6Ur-2n-4RC"/>
                         <outlet property="timeRemainingLabel" destination="rJd-0o-eYt" id="6w8-KM-Ojb"/>
+                        <segue destination="SfP-HZ-vPt" kind="show" identifier="toFinishViewController" id="hB7-fT-49C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

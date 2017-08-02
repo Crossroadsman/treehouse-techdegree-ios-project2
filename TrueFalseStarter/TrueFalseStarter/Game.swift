@@ -14,31 +14,20 @@ class Game {
     //MARK: - Types
     //-------------
     
-    // Associated value is number of questions in round
-    enum Round {
-        case normal(Int)
-        case lightning(Int)
-        
-        func getRoundCount() -> Int {
-            switch self {
-            case let .normal(rounds):
-                return rounds
-            case let .lightning(rounds):
-                return rounds
-            }
-        }
-    }
-    
     //MARK: - Properties
     //------------------
     
-    private let rounds: [Round] = [.normal(4), .lightning(4)]
+    private let rounds = [
+        Round(type: .normal, questions: 4),
+        Round(type: .lightning, questions: 4)
+    ]
     
     private var questionBank: [Question] = []
     
     private var score: Int = 0
     
     private var questionIndex = 0
+    private var roundIndex = 0
 
     
     //MARK: - Initializers
@@ -50,7 +39,7 @@ class Game {
         // (since there is no right way for the app to behave
         // if we insist on n unique questions, but fewer than n unique
         // questions exist, a crash is the only appropriate response
-        guard let bank = getQuestions(number: rounds.reduce(0, {$0 + $1.getRoundCount()}), fromBanks: [mainQuestionBank]) else {
+        guard let bank = getQuestions(number: rounds.reduce(0, {$0 + $1.questions}), fromBanks: [mainQuestionBank]) else {
             fatalError("Requested more questions than available")
         }
         questionBank = bank
@@ -90,6 +79,7 @@ class Game {
     public func start() {
         score = 0
         questionIndex = 0
+        roundIndex = 0
     }
     
     public func getQuestionText() -> String {
@@ -101,32 +91,40 @@ class Game {
     }
     
     public func isLightningRound() -> Bool {
-        return false
+        return rounds[roundIndex].type == .lightning
+    }
+    
+    public func answerQuestion(answer: String) {
+        
+        if questionBank[questionIndex].isCorrect(answer: answer) {
+            score += 1
+        }
     }
     
     public func isCorrect(answer: String) -> Bool {
         
-        let response: Bool
+        return questionBank[questionIndex].isCorrect(answer:answer)
         
-        if questionBank[questionIndex].isCorrect(answer: answer) {
-            score += 1
-            response = true
-        } else {
-            response = false
-        }
-        
-        return response
     }
     
     public func isNextRound() -> Bool {
         
-        if questionIndex >= questionBank.count - 1 {
+        switch questionIndex {
+        case _ where (questionIndex >= rounds[roundIndex].questions - 1) && (roundIndex == rounds.count - 1):
+            // just completed last question of last round
             return false
+            
+        case _ where (questionIndex >= rounds[roundIndex].questions - 1):
+            // just completed last question of round other than last round
+            questionIndex = 0
+            roundIndex += 1
+            return true
+            
+        default:
+            //not last question of a round
+            questionIndex += 1
+            return true
         }
-        
-        questionIndex += 1
-        
-        return true
         
     }
     

@@ -10,35 +10,8 @@ import UIKit
 
 class GameViewController: UIViewController {
     
-    // old code to remove:
-    /*
-    let questionsPerRound = 4
-    var questionsAsked = 0
-    var correctQuestions = 0
-    var indexOfSelectedQuestion: Int = 0
-    
-    var gameSound: SystemSoundID = 0
-    
-    let trivia: [[String : String]] = [
-        ["Question": "Only female koalas can whistle", "Answer": "False"],
-        ["Question": "Blue whales are technically whales", "Answer": "True"],
-        ["Question": "Camels are cannibalistic", "Answer": "False"],
-        ["Question": "All ducks are birds", "Answer": "True"]
-    ]
-     */
-    //end old code to remove
-    
     //MARK: - Properties
     //------------------
-    
-    //old code to remove:
-    /*
-    @IBOutlet weak var questionField: UILabel!
-    @IBOutlet weak var trueButton: UIButton!
-    @IBOutlet weak var falseButton: UIButton!
-    @IBOutlet weak var playAgainButton: UIButton!
-    */
-    //end old code to remove
 
     @IBOutlet weak var lightningStackView: UIStackView!
     @IBOutlet weak var timeRemainingLabel: UILabel!
@@ -48,13 +21,11 @@ class GameViewController: UIViewController {
     @IBOutlet weak var resultLabel: UILabel!
     
     @IBOutlet weak var answer1Button: UIButton!
-    
     @IBOutlet weak var answer2Button: UIButton!
-    
     @IBOutlet weak var answer3Button: UIButton!
-    
     @IBOutlet weak var answer4Button: UIButton!
     
+    @IBOutlet weak var nextQuestionButton: UIButton!
     
     let game = Game()
     let soundController = SoundController()
@@ -65,16 +36,9 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /*
-        for view in lightningStackView.arrangedSubviews {
-            view.isHidden = true
-        }
-         */
-        
         // Start game
         soundController.playSound(named: "start", withFileType: "wav")
         game.start()
-        
         
         displayQuestion()
     }
@@ -89,30 +53,64 @@ class GameViewController: UIViewController {
         
         let buttons = [answer1Button, answer2Button, answer3Button, answer4Button]
         
-        //disable button
+        // color the sender orange
+        // (only appears if the answer is wrong)
+        sender.setTitleColor(Color.orange, for: .normal)
+        
         for button in buttons {
+
+            // color the correct answer green
+            if game.isCorrect(answer: button!.titleLabel!.text!) {
+                button?.setTitleColor(Color.green, for: .normal)
+            }
+            
+            //disable button
             button!.isEnabled = false
         }
         
+        game.answerQuestion(answer: sender.titleLabel!.text!)
+        
         if game.isCorrect(answer: sender.titleLabel!.text!) {
+            
+            soundController.playSound(named: "correct", withFileType: "wav")
+            
             print("correct")
             resultLabel.text = "That's Correct!"
-            resultLabel.textColor = UIColor(red: 10.0/255, green: 235.0/255, blue: 128.0/255, alpha: 1.0)
+            resultLabel.textColor = Color.green
             resultLabel.isHidden = false
 
         } else {
+            
+            soundController.playSound(named: "incorrect", withFileType: "wav")
+            
             resultLabel.text = "Sorry, that's not it."
-            resultLabel.textColor = UIColor(red: 255.0/255, green: 128.0/255, blue: 0.0/255, alpha: 1.0)
+            resultLabel.textColor = Color.orange
             resultLabel.isHidden = false
         }
+        
+        //enable nextButton
+        
+        nextQuestionButton.isHidden = false
+        nextQuestionButton.isEnabled = true
        
     }
     
     @IBAction func nextButtonTapped(_ sender: UIButton) {
         
-        // If !gameOver load reload display with next question
+        let isNextRound = game.isNextRound()
         
-        // If gameOver segue to gameOver Screen
+        if isNextRound {
+            // If !gameOver load reload display with next question
+            
+            nextQuestionButton.isEnabled = false
+            nextQuestionButton.isHidden = true
+            
+            displayQuestion()
+        } else {
+            // If gameOver segue to gameOver Screen
+            performSegue(withIdentifier: "toFinishViewController", sender: nil)
+        }
+        
         
     }
     
@@ -122,6 +120,9 @@ class GameViewController: UIViewController {
 
     
     func displayQuestion() {
+
+        let answers = game.getAnswers()
+
         
         // hide result label
         resultLabel.isHidden = true
@@ -137,22 +138,26 @@ class GameViewController: UIViewController {
         let buttons = [answer1Button, answer2Button, answer3Button, answer4Button]
         
         // enable buttons
-        for button in buttons {
-            button!.isEnabled = true
+        for (index, button) in buttons.enumerated() {
+
+            if index < answers.count {
+                
+                print("button \(index + 1) is true")
+                button!.isEnabled = true
+                button!.setTitle(answers[index], for: .normal)
+                button!.setTitleColor(Color.lightGrey, for: .normal)
+
+            } else {
+                print("button \(index + 1) is false")
+                button?.isHidden = true
+            }
+            
+            
         }
 
         
         // set labels
         questionLabel.text = game.getQuestionText()
-        
-        let answers = game.getAnswers()
-        print(answers)
-        
-        
-        for (index, _) in answers.enumerated() {
-            buttons[index]!.setTitle(answers[index], for: .normal)
-        }
-        
         
         
 //         playAgainButton.isHidden = true

@@ -12,6 +12,10 @@
 		4E420B3B1F30371B0017D211 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E420B3A1F30371B0017D211 /* Question.swift */; };
 		4E7F52541F312B0700EBED69 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F52531F312B0700EBED69 /* Game.swift */; };
 		4E93EAA51F314811004A1E5A /* SoundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93EAA41F314811004A1E5A /* SoundController.swift */; };
+		4ECB43C51F3150CC000EF2A0 /* incorrect.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4ECB43C41F3150CC000EF2A0 /* incorrect.wav */; };
+		4ECB43C71F3150DC000EF2A0 /* start.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4ECB43C61F3150DC000EF2A0 /* start.wav */; };
+		4ECB43C91F3150F1000EF2A0 /* finish.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4ECB43C81F3150F1000EF2A0 /* finish.wav */; };
+		4ECB43CB1F315100000EF2A0 /* correct.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4ECB43CA1F315100000EF2A0 /* correct.wav */; };
 		97093D3C1C913506001275BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97093D3B1C913506001275BC /* AppDelegate.swift */; };
 		97093D3E1C913506001275BC /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97093D3D1C913506001275BC /* GameViewController.swift */; };
 		97093D411C913506001275BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97093D3F1C913506001275BC /* Main.storyboard */; };
@@ -26,6 +30,10 @@
 		4E420B3A1F30371B0017D211 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		4E7F52531F312B0700EBED69 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		4E93EAA41F314811004A1E5A /* SoundController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundController.swift; sourceTree = "<group>"; };
+		4ECB43C41F3150CC000EF2A0 /* incorrect.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = incorrect.wav; sourceTree = "<group>"; };
+		4ECB43C61F3150DC000EF2A0 /* start.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = start.wav; sourceTree = "<group>"; };
+		4ECB43C81F3150F1000EF2A0 /* finish.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = finish.wav; sourceTree = "<group>"; };
+		4ECB43CA1F315100000EF2A0 /* correct.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = correct.wav; sourceTree = "<group>"; };
 		97093D381C913506001275BC /* TrueFalseStarter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrueFalseStarter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97093D3B1C913506001275BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97093D3D1C913506001275BC /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +87,10 @@
 			children = (
 				97093D421C913506001275BC /* Assets.xcassets */,
 				97093D521C932116001275BC /* GameSound.wav */,
+				4ECB43C41F3150CC000EF2A0 /* incorrect.wav */,
+				4ECB43C61F3150DC000EF2A0 /* start.wav */,
+				4ECB43C81F3150F1000EF2A0 /* finish.wav */,
+				4ECB43CA1F315100000EF2A0 /* correct.wav */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -174,8 +186,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				97093D531C932116001275BC /* GameSound.wav in Resources */,
+				4ECB43CB1F315100000EF2A0 /* correct.wav in Resources */,
+				4ECB43C71F3150DC000EF2A0 /* start.wav in Resources */,
+				4ECB43C51F3150CC000EF2A0 /* incorrect.wav in Resources */,
 				97093D461C913506001275BC /* LaunchScreen.storyboard in Resources */,
 				97093D431C913506001275BC /* Assets.xcassets in Resources */,
+				4ECB43C91F3150F1000EF2A0 /* finish.wav in Resources */,
 				97093D411C913506001275BC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

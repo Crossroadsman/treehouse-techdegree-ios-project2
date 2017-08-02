@@ -47,13 +47,13 @@ class GameViewController: UIViewController {
     
     @IBOutlet weak var resultLabel: UILabel!
     
-    @IBOutlet weak var answer1Label: UIButton!
+    @IBOutlet weak var answer1Button: UIButton!
     
-    @IBOutlet weak var answer2Label: UIButton!
+    @IBOutlet weak var answer2Button: UIButton!
     
-    @IBOutlet weak var answer3Label: UIButton!
+    @IBOutlet weak var answer3Button: UIButton!
     
-    @IBOutlet weak var answer4Label: UIButton!
+    @IBOutlet weak var answer4Button: UIButton!
     
     
     let game = Game()
@@ -65,9 +65,6 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // hide lightning mode
-        lightningStackView.isHidden = true
-        
         /*
         for view in lightningStackView.arrangedSubviews {
             view.isHidden = true
@@ -75,8 +72,10 @@ class GameViewController: UIViewController {
          */
         
         // Start game
-        soundController.playSound(named: "start", withFileType: "mp3")
+        soundController.playSound(named: "start", withFileType: "wav")
         game.start()
+        
+        
         displayQuestion()
     }
     
@@ -88,6 +87,19 @@ class GameViewController: UIViewController {
         
         let answerNumber = sender.tag
         
+        let buttons = [answer1Button, answer2Button, answer3Button, answer4Button]
+        
+        //disable button
+        for button in buttons {
+            button!.isEnabled = false
+        }
+        
+        if game.isCorrect(answer: sender.titleLabel!.text!) {
+            print("correct")
+        } else {
+            print("incorrect")
+        }
+       
     }
     
     @IBAction func nextButtonTapped(_ sender: UIButton) {
@@ -105,15 +117,39 @@ class GameViewController: UIViewController {
     
     func displayQuestion() {
         
+        // hide result label
+        resultLabel.isHidden = true
+        
+        // check if lightning, if so, show lightning specific UI
         if game.isLightningRound() {
-            lightningStackView.isHidden = false
+            showLightning()
         } else {
-            lightningStackView.isHidden = true
+            hideLightning()
         }
         
+
+        let buttons = [answer1Button, answer2Button, answer3Button, answer4Button]
+        
+        // enable buttons
+        for button in buttons {
+            button!.isEnabled = true
+        }
+
+        
+        // set labels
         questionLabel.text = game.getQuestionText()
         
-//        playAgainButton.isHidden = true
+        let answers = game.getAnswers()
+        print(answers)
+        
+        
+        for (index, _) in answers.enumerated() {
+            buttons[index]!.setTitle(answers[index], for: .normal)
+        }
+        
+        
+        
+//         playAgainButton.isHidden = true
     }
     
     //to delete
@@ -196,6 +232,22 @@ class GameViewController: UIViewController {
         }
     }
     */
+    
+    func hideLightning() {
+        for view in lightningStackView.arrangedSubviews {
+            if view.tag == 100 {
+                view.isHidden = true
+            }
+        }
+    }
+    
+    func showLightning() {
+        for view in lightningStackView.arrangedSubviews {
+            if view.tag == 100 {
+                view.isHidden = false
+            }
+        }
+    }
     
 }
 

@@ -101,7 +101,11 @@ class Game {
     }
     
     public func isLightningRound() -> Bool {
-        return true
+        return false
+    }
+    
+    public func isCorrect(answer: String) -> Bool {
+        return questionBank[questionIndex].isCorrect(answer: answer)
     }
     
     

@@ -10,6 +10,7 @@ import Foundation
 import GameplayKit // for RNG
 
 struct Question {
+    
     //MARK: - Properties
     //------------------
     public let question: String
@@ -39,7 +40,7 @@ struct Question {
     }
     
     /**
-     returns a randomized list of potential answers.
+     Shuffles all the possible answers and returns a randomly-ordered array of answers
      */
     public func getAnswers() -> [String] {
         let randomSource = GKRandomSource()
@@ -66,5 +67,3 @@ let mainQuestionBank = [
     Question(question: "Before founding the Parker Pen Company, which company's pens did George Parker sell?", correctAnswer: "John Holland Gold Pen Company", incorrectAnswers: ["A. A. Waterman", "Aikin Lambert"]),
     Question(question: "In what year was the Parker 51 introduced?", correctAnswer: "1939", incorrectAnswers: ["1951", "1920"])
 ]
-
-//questions[0].question

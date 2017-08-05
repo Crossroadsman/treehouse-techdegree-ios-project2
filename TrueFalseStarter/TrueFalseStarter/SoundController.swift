@@ -3,7 +3,7 @@
 //  TrueFalseStarter
 //
 //  Created by Alex Koumparos on 01/08/17.
-//  Copyright © 2017 Koumparos Software. All rights reserved.
+//  Copyright © 2017 Alex Koumparos. All rights reserved.
 //
 
 import UIKit
@@ -25,6 +25,9 @@ class SoundController: NSObject {
         AudioServicesPlaySystemSound(gameSound)
     }
     
+    /**
+     play the sound with the associated filename and filetype
+     */
     public func playSound(named name: String, withFileType fileType: String) {
         loadSound(named: name, withFileType: fileType)
         playSound()

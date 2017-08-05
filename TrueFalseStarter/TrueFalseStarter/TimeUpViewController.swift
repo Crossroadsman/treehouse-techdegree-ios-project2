@@ -3,7 +3,7 @@
 //  TrueFalseStarter
 //
 //  Created by Alex Koumparos on 04/08/17.
-//  Copyright © 2017 Treehouse. All rights reserved.
+//  Copyright © 2017 Alex Koumparos. All rights reserved.
 //
 
 import UIKit

@@ -3,7 +3,7 @@
 //  TrueFalseStarter
 //
 //  Created by Alex Koumparos on 01/08/17.
-//  Copyright © 2017 Koumparos Software. All rights reserved.
+//  Copyright © 2017 Alex Koumparos. All rights reserved.
 //
 
 import Foundation
@@ -89,6 +89,9 @@ class Game {
         
     }
     
+    /**
+     Clears game state and makes ready for a new game
+    */
     public func start() {
         score = 0
         questionIndex = 0
@@ -97,18 +100,33 @@ class Game {
         gameOver = false
     }
     
+    /**
+     gets the question text for the current question
+     */
     public func getQuestionText() -> String {
         return questionBank[questionIndex].question
     }
     
+    /**
+     gets a list of possible answers (as Strings). The order is random.
+     */
     public func getAnswers() -> [String] {
         return questionBank[questionIndex].getAnswers()
     }
     
+    /**
+     used to query the game to check whether in a lightning round
+     so that viewcontroller can determine what screen elements should
+     be rendered
+     */
     public func isLightningRound() -> Bool {
         return rounds[currentRoundIndex].type == .lightning
     }
     
+    /**
+     used to query the game to check how long is remaining in a lightning round
+     (returns nil if not in lightning round)
+     */
     public func lightningTimeRemaining() -> Int? {
         
         if let manager = timerManager {
@@ -118,6 +136,10 @@ class Game {
         return nil
     }
     
+    /**
+     tells the game what answer was chosen, and allows the game to query
+     the Question object to determine whether the score should be incremented
+     */
     public func answerQuestion(answer: String) {
         
         if questionBank[questionIndex].isCorrect(answer: answer) {
@@ -125,12 +147,18 @@ class Game {
         }
     }
     
+    /**
+     Queries whether a particular answer is correct
+     */
     public func isCorrect(answer: String) -> Bool {
         
         return questionBank[questionIndex].isCorrect(answer:answer)
         
     }
     
+    /**
+     Check if there is a next round and move on if appropriate
+     */
     public func isNextRound() -> Bool {
         
         print("just completed question with index \(questionIndex)")
@@ -206,6 +234,9 @@ class Game {
         return (score, questionIndex + 1)
     }
     
+    /**
+     returns whether the game is over
+     */
     public func isGameOver() -> Bool {
         return gameOver
     }

@@ -3,19 +3,14 @@
 //  TrueFalseStarter
 //
 //  Created by Alex Koumparos on 02/08/17.
-//  Copyright © 2017 Koumparos Software. All rights reserved.
+//  Copyright © 2017 Alex Koumparos. All rights reserved.
 //
 
 import Foundation
-//import GameKit
-//import UIKit
 
 // Timer is a class provided by apple
 class TimerManager {
     
-    //---debug mode---
-    //var timeRemaining = 2.0
-    //---end debug---
     var timeRemaining = 15.0
     var timer = Timer()
     var game: Game
@@ -33,7 +28,6 @@ class TimerManager {
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (t: Timer) in self.update(t)})
         
     }
-
     
     private func update(_ timer: Timer) {
         print("updating timer")
@@ -46,7 +40,9 @@ class TimerManager {
         game.timerWasUpdated()
     }
     
-    
+    /**
+     Notify the caller of remaining time
+     */
     public func getRemainingTime() -> Double {
         return timeRemaining
     }

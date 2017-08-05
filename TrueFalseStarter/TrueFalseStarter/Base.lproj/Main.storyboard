@@ -355,11 +355,52 @@
                         <outlet property="resultLabel" destination="qTh-3m-4CM" id="6Ur-2n-4RC"/>
                         <outlet property="timeRemainingLabel" destination="rJd-0o-eYt" id="6w8-KM-Ojb"/>
                         <segue destination="SfP-HZ-vPt" kind="show" identifier="toFinishViewController" id="hB7-fT-49C"/>
+                        <segue destination="7H0-3e-UPS" kind="presentation" identifier="toTimeUpViewController" id="Nll-4p-KBV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-203" y="116"/>
+        </scene>
+        <!--Time Up View Controller-->
+        <scene sceneID="pHQ-sd-uNN">
+            <objects>
+                <viewController id="7H0-3e-UPS" customClass="TimeUpViewController" customModule="TrueFalseStarter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Dma-vc-B16"/>
+                        <viewControllerLayoutGuide type="bottom" id="WSf-qm-xRQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NP2-2P-oD4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time's Up!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8vB-Wz-09k">
+                                <rect key="frame" x="128" y="142" width="82" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m8t-iS-RgX">
+                                <rect key="frame" x="129" y="340" width="62" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Continue"/>
+                                <connections>
+                                    <action selector="continueButtonTapped:" destination="7H0-3e-UPS" eventType="touchUpInside" id="aeV-vm-AKz"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="continueButton" destination="m8t-iS-RgX" id="XAz-1T-Udd"/>
+                        <segue destination="nKN-l7-qQZ" kind="unwind" identifier="unwindToGameViewController" unwindAction="unwindToGameViewControllerWithSegue:" id="wuF-IB-V3W"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H26-C3-hNn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="nKN-l7-qQZ" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="621" y="-660"/>
         </scene>
         <!--Finish View Controller-->
         <scene sceneID="jeq-Ds-5VH">
@@ -455,11 +496,14 @@
                             <constraint firstItem="XYO-vj-CIU" firstAttribute="top" secondItem="p9s-GS-scS" secondAttribute="bottom" id="zre-6I-mFj"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="scoreLabel" destination="aAx-AO-Xbe" id="7V8-aT-FOJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y0u-Dc-NEh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="B9f-cc-M1B" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="769" y="65"/>
+            <point key="canvasLocation" x="879" y="20"/>
         </scene>
     </scenes>
 </document>

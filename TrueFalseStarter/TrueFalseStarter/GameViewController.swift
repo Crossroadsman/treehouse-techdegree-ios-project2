@@ -52,6 +52,32 @@ class GameViewController: UIViewController {
     }
     
     
+    //MARK: - Navigation
+    //------------------
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let segueId = segue.identifier {
+            
+            switch segueId {
+                
+            case "toTimeUpViewController":
+                print("to time up view controller")
+            case "toFinishViewController":
+                let destinationVC = segue.destination as! FinishViewController
+                
+                let (score, questions) = game.getScore()
+                destinationVC.correctAnswers = score
+                destinationVC.totalQuestions = questions
+            default:
+                print("No segue ID")
+                return
+            }
+            
+        }
+        
+    }
+    
+    
     //MARK: - IBActions
     //-----------------
     
@@ -116,12 +142,15 @@ class GameViewController: UIViewController {
             displayQuestion()
         } else {
             // If gameOver segue to gameOver Screen
-            performSegue(withIdentifier: "toFinishViewController", sender: nil)
+            performSegue(withIdentifier: "toFinishViewController", sender: self)
         }
         
         
     }
     
+    
+    @IBAction func unwindToGameViewController(segue: UIStoryboardSegue) {
+    }
     
     //MARK: - Other Methods
     //---------------------
@@ -255,6 +284,11 @@ class GameViewController: UIViewController {
     }
     */
     
+    
+    func segueToTimeUp() {
+        performSegue(withIdentifier: "toTimeUpViewController", sender: self)
+    }
+    
     func hideLightning() {
         for view in lightningStackView.arrangedSubviews {
             if view.tag == 100 {
@@ -272,7 +306,18 @@ class GameViewController: UIViewController {
     }
     
     func updateTimeRemaining() {
-        timeRemainingLabel.text = "⏱\(game.lightningTimeRemaining()!)"
+        
+        guard let timeRemaining = game.lightningTimeRemaining() else {
+            return
+        }
+        
+        timeRemainingLabel.text = "⏱\(timeRemaining)"
+        
+        if timeRemaining <= 0 {
+            segueToTimeUp()
+        }
+        
+
     }
     
 }

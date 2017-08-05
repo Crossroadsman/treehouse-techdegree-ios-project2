@@ -193,8 +193,11 @@ class Game {
         vc.updateTimeRemaining()
     }
     
-    private func outOfTime() {
-        // notify vc that out of time
+    /**
+     returns a tuple containing the score and number of questions
+     */
+    public func getScore() -> (Int, Int) {
+        return (score, questionIndex + 1)
     }
     
 }

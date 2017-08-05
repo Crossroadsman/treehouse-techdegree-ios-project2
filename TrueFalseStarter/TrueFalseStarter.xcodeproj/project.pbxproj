@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E13DF781F357DC000D0F26B /* TimeUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E13DF771F357DC000D0F26B /* TimeUpViewController.swift */; };
 		4E31FC101F2FEC6D00C65DEC /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E31FC0F1F2FEC6D00C65DEC /* StartViewController.swift */; };
 		4E31FC121F2FEC7E00C65DEC /* FinishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E31FC111F2FEC7E00C65DEC /* FinishViewController.swift */; };
 		4E420B3B1F30371B0017D211 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E420B3A1F30371B0017D211 /* Question.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E13DF771F357DC000D0F26B /* TimeUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUpViewController.swift; sourceTree = "<group>"; };
 		4E31FC0F1F2FEC6D00C65DEC /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		4E31FC111F2FEC7E00C65DEC /* FinishViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishViewController.swift; sourceTree = "<group>"; };
 		4E420B3A1F30371B0017D211 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				4E31FC111F2FEC7E00C65DEC /* FinishViewController.swift */,
 				97093D3D1C913506001275BC /* GameViewController.swift */,
 				4E93EAA41F314811004A1E5A /* SoundController.swift */,
+				4E13DF771F357DC000D0F26B /* TimeUpViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 				97093D3E1C913506001275BC /* GameViewController.swift in Sources */,
 				4E31FC121F2FEC7E00C65DEC /* FinishViewController.swift in Sources */,
 				4E93EAA51F314811004A1E5A /* SoundController.swift in Sources */,
+				4E13DF781F357DC000D0F26B /* TimeUpViewController.swift in Sources */,
 				97093D3C1C913506001275BC /* AppDelegate.swift in Sources */,
 				4E85FA7B1F317CCD000D115C /* Round.swift in Sources */,
 				4E31FC101F2FEC6D00C65DEC /* StartViewController.swift in Sources */,

@@ -3,7 +3,7 @@
 //  TrueFalseStarter
 //
 //  Created by Alex Koumparos on 01/08/17.
-//  Copyright © 2017 Treehouse. All rights reserved.
+//  Copyright © 2017 Koumparos Software. All rights reserved.
 //
 
 import Foundation
@@ -31,12 +31,16 @@ class Game {
     private var currentRoundIndex = 0
     
     private var questionInRound = 0
+    
+    private var timerManager: TimerManager?
+    
+    private var vc: GameViewController!
 
     
     //MARK: - Initializers
     //--------------------
     
-    init() {
+    init(vc: GameViewController) {
         
         // check that we have enough questions, else crash
         // (since there is no right way for the app to behave
@@ -46,6 +50,9 @@ class Game {
             fatalError("Requested more questions than available")
         }
         questionBank = bank
+        
+        
+        self.vc = vc
     }
     
     
@@ -99,6 +106,15 @@ class Game {
         return rounds[currentRoundIndex].type == .lightning
     }
     
+    public func lightningTimeRemaining() -> Int? {
+        
+        if let manager = timerManager {
+            return Int( manager.getRemainingTime() )
+        }
+        
+        return nil
+    }
+    
     public func answerQuestion(answer: String) {
         
         if questionBank[questionIndex].isCorrect(answer: answer) {
@@ -120,18 +136,27 @@ class Game {
         print("total questions in game: \(questionBank.count)")
         print("total questions in current round: \(rounds[currentRoundIndex].questions)")
         
+        let timeLeft: Bool
+        if let manager = timerManager {
+            timeLeft = manager.getRemainingTime() > 0
+        } else {
+            timeLeft = true
+        }
         
-        
-        
-        switch questionIndex {
-        case _ where (questionIndex >= questionBank.count - 1):
+        switch (timeLeft, questionIndex) {
+        case (false, _):
+            return false
+        case (_, _) where (questionIndex >= questionBank.count - 1):
             // just completed last question of last round
             return false
             
-        case _ where (questionInRound >= rounds[currentRoundIndex].questions - 1):
+        case (_, _) where (questionInRound >= rounds[currentRoundIndex].questions - 1):
             // just completed last question of round other than last round
             questionIndex += 1
             currentRoundIndex += 1
+            if isLightningRound() {
+                startLightning()
+            }
             questionInRound = 0
             return true
             
@@ -142,6 +167,34 @@ class Game {
             return true
         }
         
+    }
+    
+    /**
+     Activate the timer
+    */
+    private func startLightning() {
+        timerManager = TimerManager(game: self)
+        print("starting timer")
+        timerManager!.start()
+    }
+    
+    /**
+     Lets the Timer notify the Game that the timer was updated
+    */
+    public func timerWasUpdated() {
+        updateControllerTime()
+    }
+    
+    /**
+     Lets the game notify the view controller that the timer
+     was updated
+     */
+    public func updateControllerTime() {
+        vc.updateTimeRemaining()
+    }
+    
+    private func outOfTime() {
+        // notify vc that out of time
     }
     
 }

@@ -10,6 +10,7 @@
 		4E31FC101F2FEC6D00C65DEC /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E31FC0F1F2FEC6D00C65DEC /* StartViewController.swift */; };
 		4E31FC121F2FEC7E00C65DEC /* FinishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E31FC111F2FEC7E00C65DEC /* FinishViewController.swift */; };
 		4E420B3B1F30371B0017D211 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E420B3A1F30371B0017D211 /* Question.swift */; };
+		4E752ED11F31A2430078C87C /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E752ED01F31A2430078C87C /* Timer.swift */; };
 		4E7F52541F312B0700EBED69 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F52531F312B0700EBED69 /* Game.swift */; };
 		4E85FA7B1F317CCD000D115C /* Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E85FA7A1F317CCD000D115C /* Round.swift */; };
 		4E85FA7D1F31846E000D115C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E85FA7C1F31846E000D115C /* Colors.swift */; };
@@ -30,6 +31,7 @@
 		4E31FC0F1F2FEC6D00C65DEC /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		4E31FC111F2FEC7E00C65DEC /* FinishViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishViewController.swift; sourceTree = "<group>"; };
 		4E420B3A1F30371B0017D211 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		4E752ED01F31A2430078C87C /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		4E7F52531F312B0700EBED69 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		4E85FA7A1F317CCD000D115C /* Round.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Round.swift; sourceTree = "<group>"; };
 		4E85FA7C1F31846E000D115C /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				4E420B3A1F30371B0017D211 /* Question.swift */,
 				4E7F52531F312B0700EBED69 /* Game.swift */,
 				4E85FA7A1F317CCD000D115C /* Round.swift */,
+				4E752ED01F31A2430078C87C /* Timer.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 				4E420B3B1F30371B0017D211 /* Question.swift in Sources */,
 				4E85FA7D1F31846E000D115C /* Colors.swift in Sources */,
 				4E7F52541F312B0700EBED69 /* Game.swift in Sources */,
+				4E752ED11F31A2430078C87C /* Timer.swift in Sources */,
 				97093D3E1C913506001275BC /* GameViewController.swift in Sources */,
 				4E31FC121F2FEC7E00C65DEC /* FinishViewController.swift in Sources */,
 				4E93EAA51F314811004A1E5A /* SoundController.swift in Sources */,
@@ -336,6 +340,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TrueFalseStarter/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.teamtreehouse.TrueFalseStarter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -348,6 +353,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TrueFalseStarter/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.teamtreehouse.TrueFalseStarter;
 				PRODUCT_NAME = "$(TARGET_NAME)";

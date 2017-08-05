@@ -27,7 +27,7 @@ class GameViewController: UIViewController {
     
     @IBOutlet weak var nextQuestionButton: UIButton!
     
-    let game = Game()
+    var game: Game!
     let soundController = SoundController()
     
     @IBOutlet weak var temp: NSLayoutConstraint!
@@ -40,6 +40,8 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        game = Game(vc: self)
         
         // Start game
         soundController.playSound(named: "start", withFileType: "wav")
@@ -267,6 +269,10 @@ class GameViewController: UIViewController {
                 view.isHidden = false
             }
         }
+    }
+    
+    func updateTimeRemaining() {
+        timeRemainingLabel.text = "⏱\(game.lightningTimeRemaining()!)"
     }
     
 }

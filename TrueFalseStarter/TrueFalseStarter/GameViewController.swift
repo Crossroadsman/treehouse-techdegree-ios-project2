@@ -51,23 +51,33 @@ class GameViewController: UIViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if game.isGameOver() {
+            performSegue(withIdentifier: "toFinishViewController", sender: self)
+        }
+    }
     
     //MARK: - Navigation
     //------------------
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        print("preparing for segue")
         if let segueId = segue.identifier {
             
             switch segueId {
                 
             case "toTimeUpViewController":
-                print("to time up view controller")
+                let destinationVC = segue.destination as! TimeUpViewController
+                
+                destinationVC.isNextRound = game.isNextRound()
+                
             case "toFinishViewController":
+                print("going to finish view controller")
                 let destinationVC = segue.destination as! FinishViewController
                 
                 let (score, questions) = game.getScore()
                 destinationVC.correctAnswers = score
                 destinationVC.totalQuestions = questions
+                game.start() // clear game state to enable finishviewcontroller to unwind **through** gameviewcontroller to startviewcontroller without getting interrupted by the gameovercheck in gameviewcontroller 
             default:
                 print("No segue ID")
                 return
@@ -129,8 +139,8 @@ class GameViewController: UIViewController {
        
     }
     
-    @IBAction func nextButtonTapped(_ sender: UIButton) {
-        
+    @IBAction func nextButtonTapped(_ sender: UIButton?) {
+        print("next button tapped")
         let isNextRound = game.isNextRound()
         
         if isNextRound {
@@ -150,6 +160,10 @@ class GameViewController: UIViewController {
     
     
     @IBAction func unwindToGameViewController(segue: UIStoryboardSegue) {
+        print("unwind segue called")
+        
+        print("segueing out to finish view controller")
+        
     }
     
     //MARK: - Other Methods
@@ -286,6 +300,8 @@ class GameViewController: UIViewController {
     
     
     func segueToTimeUp() {
+        let _ = game.isNextRound()
+
         performSegue(withIdentifier: "toTimeUpViewController", sender: self)
     }
     

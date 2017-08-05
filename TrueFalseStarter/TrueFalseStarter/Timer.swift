@@ -13,7 +13,10 @@ import Foundation
 // Timer is a class provided by apple
 class TimerManager {
     
-    var timeRemaining = 15.0
+    //---debug mode---
+    var timeRemaining = 2.0
+    //---end debug---
+    //var timeRemaining = 15.0
     var timer = Timer()
     var game: Game
     

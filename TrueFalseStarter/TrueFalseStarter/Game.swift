@@ -36,6 +36,8 @@ class Game {
     
     private var vc: GameViewController!
 
+    private var gameOver: Bool = false
+    
     
     //MARK: - Initializers
     //--------------------
@@ -92,6 +94,7 @@ class Game {
         questionIndex = 0
         currentRoundIndex = 0
         questionInRound = 0
+        gameOver = false
     }
     
     public func getQuestionText() -> String {
@@ -145,9 +148,12 @@ class Game {
         
         switch (timeLeft, questionIndex) {
         case (false, _):
+            print("checking if there is a next round. No time left, therefore no next round")
+            gameOver = true
             return false
         case (_, _) where (questionIndex >= questionBank.count - 1):
             // just completed last question of last round
+            gameOver = true
             return false
             
         case (_, _) where (questionInRound >= rounds[currentRoundIndex].questions - 1):
@@ -198,6 +204,10 @@ class Game {
      */
     public func getScore() -> (Int, Int) {
         return (score, questionIndex + 1)
+    }
+    
+    public func isGameOver() -> Bool {
+        return gameOver
     }
     
 }
